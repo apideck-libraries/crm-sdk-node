@@ -1,0 +1,95 @@
+/* tslint:disable */
+/* eslint-disable */
+import { exists, mapValues } from '../runtime';
+import {
+  UnifiedId,
+  UnifiedIdFromJSON,
+  UnifiedIdFromJSONTyped,
+  UnifiedIdToJSON,
+} from './';
+
+/**
+ *
+ * @export
+ * @interface DeleteCompanyResponse
+ */
+export interface DeleteCompanyResponse {
+  /**
+   * HTTP Response Status Code
+   * @type {number}
+   * @memberof DeleteCompanyResponse
+   */
+  statusCode: number;
+  /**
+   * HTTP Response Status
+   * @type {string}
+   * @memberof DeleteCompanyResponse
+   */
+  status: string;
+  /**
+   * Apideck ID of service provider
+   * @type {string}
+   * @memberof DeleteCompanyResponse
+   */
+  service: string;
+  /**
+   * Unified API resource name
+   * @type {string}
+   * @memberof DeleteCompanyResponse
+   */
+  resource: string;
+  /**
+   * Operation performed
+   * @type {string}
+   * @memberof DeleteCompanyResponse
+   */
+  operation: string;
+  /**
+   *
+   * @type {UnifiedId}
+   * @memberof DeleteCompanyResponse
+   */
+  data: UnifiedId;
+}
+
+export function DeleteCompanyResponseFromJSON(
+  json: any
+): DeleteCompanyResponse {
+  return DeleteCompanyResponseFromJSONTyped(json, false);
+}
+
+export function DeleteCompanyResponseFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean
+): DeleteCompanyResponse {
+  if (json === undefined || json === null) {
+    return json;
+  }
+  return {
+    statusCode: json['status_code'],
+    status: json['status'],
+    service: json['service'],
+    resource: json['resource'],
+    operation: json['operation'],
+    data: UnifiedIdFromJSON(json['data']),
+  };
+}
+
+export function DeleteCompanyResponseToJSON(
+  value?: DeleteCompanyResponse | null
+): any {
+  if (value === undefined) {
+    return undefined;
+  }
+  if (value === null) {
+    return null;
+  }
+  return {
+    status_code: value.statusCode,
+    status: value.status,
+    service: value.service,
+    resource: value.resource,
+    operation: value.operation,
+    data: UnifiedIdToJSON(value.data),
+  };
+}
