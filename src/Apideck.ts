@@ -180,9 +180,19 @@ export class CrmApi {
   }
 }
 
+const isNode =
+  typeof process !== 'undefined' &&
+  process.versions != null &&
+  process.versions.node != null;
+
 export class Apideck {
   readonly crm: CrmApi;
   constructor(readonly config: Crm.ConfigurationParameters) {
+    if (!isNode) {
+      console.warn(
+        "THIS IS A SERVERSIDE (Node.js) LIBRARY AND SHOULDN'T BE USED IN THE BROWSER OR YOU RISK LEAKING YOUR APIKEYS. PLEASE BE CAREFULL AND DON'T SHIP THIS TO PRODUCTION."
+      );
+    }
     this.crm = new CrmApi(config);
   }
 }

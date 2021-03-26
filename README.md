@@ -32,7 +32,7 @@ All endpoints require a valid apiKey so that's the only required parameter to in
 ```typescript
 import Apideck from 'apideck';
 
-const apideckClient = new Apideck({
+const apideck = new Apideck({
   apiKey: <insert-api-key-here>,
   applicationId: <insert-application-id-here>,
   consumerId: <insert-consumer-id-here>,
@@ -43,7 +43,7 @@ const apideckClient = new Apideck({
 All top level parameters (except for apiKey) can be overriden in specific resource calls.
 
 ```typescript
-const response = await apideckClient.crm.contacts.list({
+const response = await apideck.crm.contacts.list({
   limit: '10',
   serviceId: '<insert-service-id-here>',
   consumerId: <insert-consumer-id-here>
@@ -56,7 +56,7 @@ Once you created a new Apideck client you can use following methods:
 ```typescript
 import Apideck from 'apideck';
 
-const apideckClient = new Apideck({
+const apideck = new Apideck({
   apiKey: <insert-api-key-here>,
   applicationId: <insert-application-id-here>,
   consumerId: <insert-consumer-id-here>,
@@ -66,35 +66,35 @@ const apideckClient = new Apideck({
 
 ### CompaniesApi
 ```typescript
-  apideckClient.companies.list(parameters);
-  apideckClient.companies.retrieve(parameters);
-  apideckClient.companies.create(parameters);
-  apideckClient.companies.update(parameters);
-  apideckClient.companies.delete(parameters);
+  apideck.companies.list(parameters);
+  apideck.companies.retrieve(parameters);
+  apideck.companies.create(parameters);
+  apideck.companies.update(parameters);
+  apideck.companies.delete(parameters);
 ```
 ### ContactsApi
 ```typescript
-  apideckClient.contacts.list(parameters);
-  apideckClient.contacts.retrieve(parameters);
-  apideckClient.contacts.create(parameters);
-  apideckClient.contacts.update(parameters);
-  apideckClient.contacts.delete(parameters);
+  apideck.contacts.list(parameters);
+  apideck.contacts.retrieve(parameters);
+  apideck.contacts.create(parameters);
+  apideck.contacts.update(parameters);
+  apideck.contacts.delete(parameters);
 ```
 ### LeadsApi
 ```typescript
-  apideckClient.leads.list(parameters);
-  apideckClient.leads.retrieve(parameters);
-  apideckClient.leads.create(parameters);
-  apideckClient.leads.update(parameters);
-  apideckClient.leads.delete(parameters);
+  apideck.leads.list(parameters);
+  apideck.leads.retrieve(parameters);
+  apideck.leads.create(parameters);
+  apideck.leads.update(parameters);
+  apideck.leads.delete(parameters);
 ```
 ### OpportunitiesApi
 ```typescript
-  apideckClient.opportunities.list(parameters);
-  apideckClient.opportunities.retrieve(parameters);
-  apideckClient.opportunities.create(parameters);
-  apideckClient.opportunities.update(parameters);
-  apideckClient.opportunities.delete(parameters);
+  apideck.opportunities.list(parameters);
+  apideck.opportunities.retrieve(parameters);
+  apideck.opportunities.create(parameters);
+  apideck.opportunities.update(parameters);
+  apideck.opportunities.delete(parameters);
 ```
 
 ## Example
@@ -102,20 +102,20 @@ const apideckClient = new Apideck({
 Retrieving a list of all contacts and updating the first record with a new address.
 
 ```typescript
-import { Apideck, PhoneNumberTypeEnum } from 'apideck'
+import { Apideck, PhoneNumberType } from 'apideck'
 
-const apideckClient = new Apideck({
+const apideck = new Apideck({
   apiKey: <insert-api-key-here>,
   applicationId: <insert-application-id-here>,
   consumerId: <insert-consumer-id-here>,
   serviceId: <insert-service-id-here>
 });
 
-const { data } = await apideckClient.crm.contacts.list({
+const { data } = await apideck.crm.contacts.list({
   limit: 10
 })
 
-const result = await apideckClient.crm.contacts.update({
+const result = await apideck.crm.contacts.update({
   id: data[0].id!,
   contact: {
     name: "John Doe",
@@ -128,7 +128,7 @@ const result = await apideckClient.crm.contacts.update({
     }],
     phoneNumbers: [{
       number: '0486565656',
-      phoneType: PhoneNumberTypeEnum.Home
+      phoneType: PhoneNumberType.Home
     }]
   }
 })
